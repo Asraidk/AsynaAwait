@@ -1,0 +1,15 @@
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\bin\Debug\AsynaAwait.exe.config
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\bin\Debug\AsynaAwait.exe
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\bin\Debug\AsynaAwait.pdb
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\AsynaAwait.csprojResolveAssemblyReference.cache
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\MainWindow.baml
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\MainWindow.g.cs
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\App.g.cs
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\AsynaAwait_MarkupCompile.cache
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\AsynaAwait.g.resources
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\AsynaAwait.Properties.Resources.resources
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\AsynaAwait.csproj.GenerateResource.Cache
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\AsynaAwait.exe
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\obj\Debug\AsynaAwait.pdb
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\bin\Debug\Newtonsoft.Json.dll
+c:\users\portatil\documents\visual studio 2013\Projects\AsynaAwait\AsynaAwait\bin\Debug\Newtonsoft.Json.xml
