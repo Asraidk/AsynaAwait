@@ -163,6 +163,14 @@ namespace AsynaAwait
             Thread.Sleep(6500);
             return "Procesos en marxa";
         }
+        //metode per trencar el string pasat y generar un array
+        public static String [] Splitear(String selecio)
+        {
+            Char delimiter = '/';
+            String[] substrings = selecio.Split(delimiter);
+            return substrings;
+        }
+
         //Metode que transforma el primer caractater que tenim al array en un numero util per fer servir
         //retornarem per poder fer feina o per si no
          public static int ComprovacioPrimerCaracter(String condicio){

@@ -107,6 +107,7 @@ namespace AsynaAwait
         {
             //bloquem les opcions que tenim en tractament y li comuniquem al usuari
             btnsequencial.IsEnabled = false;
+            btnParaules.IsEnabled = false;
             sequencialWork.Content = "Treball en sequencia en proces";
             try
             {
@@ -140,6 +141,7 @@ namespace AsynaAwait
             //un cop feina feta o no, activarem i direm que el proces a finalitzat
             sequencialWork.Content = "Treball en sequencia finallitzat";
             btnsequencial.IsEnabled = true;
+            btnParaules.IsEnabled = true;
         }
         //Proves del metode boto per fer busquedas simultaneas
         private async void btnParaules_Click(object sender, RoutedEventArgs e)
@@ -154,9 +156,12 @@ namespace AsynaAwait
             btnParaules.IsEnabled = false;
             try
             {
+                //obtenim el string del text box y li fem un tractament als seus camps
                 var selecio = buscarParaules.Text.ToString();
                 var subSelecio = Metodes.Splitear(selecio);
-                int v = Metodes.ComprovacioPrimerCaracter(subSelecio[0]);
+                int v = Metodes.ComprovacioPrimerCaracter(subSelecio[0]);//retorna un int per mirar si la condicio
+                //esta ben posada
+                //per fer la pausa
                 var control = Task<string>.Factory.StartNew(() => Metodes.Pausas());
                 await control;
                 //Iniciem el rellotge, compte amb el start i amb el Restart
