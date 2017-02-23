@@ -1,7 +1,7 @@
 ﻿<Window x:Class="AsynaAwait.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="575">
+        Title="MainWindow" Height="360" Width="575">
     <Grid>
         <ListBox x:Name="control1" HorizontalAlignment="Left" Height="185" Margin="160,70,0,0" VerticalAlignment="Top" Width="178"/>
         <ListBox x:Name="control2" HorizontalAlignment="Left" Height="185" Margin="343,70,-4,0" VerticalAlignment="Top" Width="178"/>
@@ -20,5 +20,8 @@
         <Label x:Name="tempsSeque" Content="temps" HorizontalAlignment="Left" Height="28" Margin="343,260,0,0" VerticalAlignment="Top" Width="178"/>
         <Label x:Name="parallelWork" HorizontalAlignment="Left" Height="28" Margin="160,7,0,0" VerticalAlignment="Top" Width="178"/>
         <Label x:Name="sequencialWork" HorizontalAlignment="Left" Height="28" Margin="343,8,0,0" VerticalAlignment="Top" Width="178"/>
+        <TextBox x:Name="buscarParaules"  HorizontalAlignment="Left" Height="28" Margin="10,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+        <Button x:Name="btnParaules" Content="Paraules" HorizontalAlignment="Left" Height="26" Margin="10,293,0,0" VerticalAlignment="Top" Width="69" Click="btnParaules_Click"/>
+        <Label Content="Tips busqueda TB-> Condicio/Valor" HorizontalAlignment="Left" Height="26" Margin="84,293,0,0" VerticalAlignment="Top" Width="254"/>
     </Grid>
 </Window>

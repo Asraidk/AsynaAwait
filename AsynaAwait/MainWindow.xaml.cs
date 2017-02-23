@@ -36,11 +36,11 @@ namespace AsynaAwait
             }
       
         //EVENT\\
+        //si el combobox de les opcions cambia tindrem que mostrar una llista de items diferents
         private void comboOpcions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (comboOpcions.SelectedIndex)
             {
-
                 case 0:
                     buscar.ItemsSource = null;
                     buscar.Items.Clear();
@@ -56,12 +56,14 @@ namespace AsynaAwait
                     buscar.Items.Clear();
                     buscar.ItemsSource = Metodes.mostrarCompania();
                     break;
-
             }
         }
-
+        //event del click per fer busquedas asincoronas de manera paralela, aquet metode depent del
+        //index del combo box y de quin es el camp per el que volem fer la busqueda(pais-aquest,gendre-aques)
+        //ames tenim un clock y utils per fer la interface mes digna alhora de fer la feina sigui mes coherent
         private async void click_Async(object sender, RoutedEventArgs e)
         {
+            //bloquem el que es l'interfice que esta utilitzan y fa la feina pero no la resta
             parallelWork.Content = "Treball parallel en proces";
             btnparallel.IsEnabled = false;
             try{
@@ -94,24 +96,25 @@ namespace AsynaAwait
             catch(Exception){
                 MessageBox.Show("No tens ningun camp selecionat per fer la busqueda");
             }
+            //mostrem finalitzat el treball del buto i reactivem el boto
             parallelWork.Content = "Treball parallel finalitzat";
             btnparallel.IsEnabled = true;
         }
-
-
+        //event del click per fer busquedas asincoronas de manera sequencial, aquet metode depent del
+        //index del combo box y de quin es el camp per el que volem fer la busqueda(pais-aquest,gendre-aques)
+        //ames tenim un clock y utils per fer la interface mes digna alhora de fer la feina sigui mes coherent
         private async void click_Seq(object sender, RoutedEventArgs e)
         {
+            //bloquem les opcions que tenim en tractament y li comuniquem al usuari
             btnsequencial.IsEnabled = false;
             sequencialWork.Content = "Treball en sequencia en proces";
             try
             {
-
                 var selecio = buscar.SelectedItem.ToString();
                 int v = comboOpcions.SelectedIndex;
+                //nostre metode de pausa per donar un tems afeguit a les tasques
                 var control = Task<string>.Factory.StartNew(() => Metodes.Pausas());
                 await control;
-                //tempsSeque.Content = control.Result.ToString();
-                //var selecio = buscar.SelectedItem.ToString();
                 //Iniciem el rellotge, compte amb el start i amb el Restart
                 clock.Restart();
                 switch (v)
@@ -126,18 +129,67 @@ namespace AsynaAwait
                         control2.ItemsSource = await Metodes.mostrarPerSelecioSequencial(selecio, v);
                         break;
                 }
-
                 //Finalitzem el rellotge i mostrem el temps al lavel corresponent
                 clock.Stop();
                 tempsSeque.Content = "Temps["+clock.Elapsed.TotalMilliseconds.ToString() + "]segons";
+            }
+            catch (Exception)//catch de control per si no tenim res seleciona al listbox dels items pais/gender,etc
+            {
+                MessageBox.Show("No tens ningun camp selecionat per fer la busqueda");
+            }
+            //un cop feina feta o no, activarem i direm que el proces a finalitzat
+            sequencialWork.Content = "Treball en sequencia finallitzat";
+            btnsequencial.IsEnabled = true;
+        }
+        //Proves del metode boto per fer busquedas simultaneas
+        private async void btnParaules_Click(object sender, RoutedEventArgs e)
+        {            
+            //trencar el string en dos, retornarem un bool per saber si esta be trencat en cas si
+            //anirem a un metode pasant informacio per tal de saber que el control estabe
+            //sino posarem un msg box que no s'ha pugut fer la feina
+            
+            //bloquem el que es l'interfice que esta utilitzan y fa la feina pero no la resta
+            parallelWork.Content = "Treball parallel en proces";
+            btnparallel.IsEnabled = false;
+            btnParaules.IsEnabled = false;
+            try
+            {
+                var selecio = buscarParaules.Text.ToString();
+                var subSelecio = Metodes.Splitear(selecio);
+                int v = Metodes.ComprovacioPrimerCaracter(subSelecio[0]);
+                var control = Task<string>.Factory.StartNew(() => Metodes.Pausas());
+                await control;
+                //Iniciem el rellotge, compte amb el start i amb el Restart
+                clock.Restart();
+                switch (v)
+                {
+                    case 0:
+                        control1.ItemsSource = await Metodes.mostrarPerSelecioParallel(subSelecio[1], v);
+                        break;
+                    case 1:
+                        control1.ItemsSource = await Metodes.mostrarPerSelecioParallel(subSelecio[1], v);
+                        break;
+                    case 2:
+                        control1.ItemsSource = await Metodes.mostrarPerSelecioParallel(subSelecio[1], v);
+                        break;
+                    default:
+                        MessageBox.Show("La condicio del TB no es l'adecuat per fer la feina \n recorda [country,gender,company]");
+                        break;
+                }
+
+                //Finalitzem el rellotge i mostrem el temps al lavel corresponent
+                clock.Stop();
+                tempsAsyn.Content = "Temps[" + clock.Elapsed.TotalMilliseconds.ToString() + "]segons";
 
             }
             catch (Exception)
             {
-                MessageBox.Show("No tens ningun camp selecionat per fer la busqueda");
+                MessageBox.Show("Wops!!! alguna cosa no acaba de funcionar");
             }
-            sequencialWork.Content = "Treball en sequencia finallitzat";
-            btnsequencial.IsEnabled = true;
+            //mostrem finalitzat el treball del buto i reactivem el boto
+            parallelWork.Content = "Treball parallel finalitzat";
+            btnparallel.IsEnabled = true;
+            btnParaules.IsEnabled = true;
         }       
     }
 }

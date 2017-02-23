@@ -17,6 +17,7 @@ namespace AsynaAwait
         public string email { get; set; }
         public string country { get; set; }
 
+        //metode que utilitzem per fer la lecutra del JSON i retornarlo per assignarlo a una list
         public static List<people> lleguirLlista()
         {
             var json= File.ReadAllText("people.json");
